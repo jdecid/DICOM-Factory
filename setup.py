@@ -5,7 +5,7 @@ with open('README.md', mode='r') as fh:
 
 setuptools.setup(
     name='dicom-factory',
-    version='0.0.3',
+    version='0.0.4',
     author='Josep de Cid',
     author_email='josep.de.cid@gmail.com',
     description='DICOM data generator for (mainly) testing purposes',
@@ -18,5 +18,5 @@ setuptools.setup(
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
     ],
-    python_requires='>=3.6'
+    python_requires='>3'
 )

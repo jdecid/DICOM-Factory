@@ -9,4 +9,4 @@ POSSIBLE_ARGS = [
 def validate_kwargs(args):
     for k, v in args.items():
         if k not in POSSIBLE_ARGS:
-            raise ValueError(f'Parameter `{k}` with value `{v}` is not a supported argument.')
+            raise ValueError('Parameter `%s` with value `%s` is not a supported argument.'.format(k, v))
