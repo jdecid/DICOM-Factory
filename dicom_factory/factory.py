@@ -39,7 +39,7 @@ class DicomFactory:
         ds.PixelRepresentation = 0
         ds.SamplesPerPixel = 1
         ds.PhotometricInterpretation = 'MONOCHROME1'
-        ds.SeriesDescription = 'Hand'
+        ds.SeriesDescription = kwargs.get('SeriesDescription', '')
         ds.ViewPosition = ''
 
         np.random.seed(kwargs.get('seed', np.random.randint(0, 2 ** 32 - 1)))

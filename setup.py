@@ -4,8 +4,8 @@ with open('README.md', mode='r') as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='dicom_factory-jdecid',  # Replace with your own username
-    version='0.0.1',
+    name='dicom-factory',
+    version='0.0.2',
     author='Josep de Cid',
     author_email='josep.de.cid@gmail.com',
     description='DICOM data generator for (mainly) testing purposes',
