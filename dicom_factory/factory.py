@@ -3,12 +3,15 @@ import datetime
 import numpy as np
 import pydicom
 
+from dicom_factory.validator import validate_kwargs
+
 
 class DicomFactory:
     @staticmethod
     def build(kwargs: dict = None) -> pydicom.FileDataset:
         if kwargs is None:
             kwargs = {}
+        validate_kwargs(kwargs)
 
         file_meta = pydicom.Dataset()
         file_meta.MediaStorageSOPClassUID = '1.2.840.10008.5.1.4.1.1.2'
@@ -34,8 +37,8 @@ class DicomFactory:
         ds.file_meta.TransferSyntaxUID = pydicom.uid.ExplicitVRBigEndian
 
         ds.BitsAllocated = 8
-        ds.Rows = 50
-        ds.Columns = 50
+        ds.Rows = kwargs.get('Rows', 64)
+        ds.Columns = kwargs.get('Columns', 64)
         ds.PixelRepresentation = 0
         ds.SamplesPerPixel = 1
         ds.PhotometricInterpretation = 'MONOCHROME1'
@@ -43,6 +46,6 @@ class DicomFactory:
         ds.ViewPosition = ''
 
         np.random.seed(kwargs.get('seed', np.random.randint(0, 2 ** 32 - 1)))
-        ds.PixelData = np.random.randint(0, 256, size=(50, 50), dtype=np.uint8).reshape(-1)
+        ds.PixelData = np.random.randint(0, 256, size=(ds.Rows, ds.Columns), dtype=np.uint8).reshape(-1)
 
         return ds
